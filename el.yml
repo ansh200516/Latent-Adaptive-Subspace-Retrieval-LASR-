@@ -1,0 +1,67 @@
+name: el
+channels:
+  - pytorch
+  - conda-forge
+  - anaconda
+  - defaults
+dependencies:
+  - python=3.9
+  - pytorch
+  - torchvision
+  - pandas
+  - numpy
+  - scikit-learn
+  - gensim
+  - boto3
+  - botocore
+  - pillow
+  - pip
+  - jmespath
+  - joblib
+  - smart_open
+  - requests
+  - six
+  # The packages below are dependencies of the ones above.
+  # Conda will pull them in automatically.
+  # It's safer to let Conda choose the right versions.
+  # - asn1crypto
+  # - blas
+  # - bz2file
+  # - ca-certificates
+  # - certifi
+  # - cffi
+  # - chardet
+  # - cryptography
+  # - docutils
+  # - freetype
+  # - idna
+  # - intel-openmp
+  # - jpeg
+  # - libedit
+  # - libffi
+  # - libgcc-ng
+  # - libgfortran-ng
+  # - libpng
+  # - libstdcxx-ng
+  # - libtiff
+  # - mkl
+  # - ncurses
+  # - ninja
+  # - olefile
+  # - openssl
+  # - pycparser
+  # - pyopenssl
+  # - pysocks
+  # - python-dateutil
+  # - pytz
+  # - readline
+  # - s3transfer
+  # - scipy
+  # - setuptools
+  # - sqlite
+  # - tk
+  # - urllib3
+  # - wheel
+  # - xz
+  # - zlib
+  # - zstd
