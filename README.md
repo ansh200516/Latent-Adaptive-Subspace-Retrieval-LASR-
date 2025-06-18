@@ -20,6 +20,38 @@ We propose to adapt this powerful philosophy to the problem of reflection retrie
 
 LASR is a multi-stage framework designed to balance retrieval speed with deep contextual modeling. It is composed of a one-time offline preparation phase and a dynamic online processing loop for each query.
 
+```mermaid
+graph TD
+    subgraph Offline Preparation
+        A[All Reflection Templates] -->|Embed with SBERT| B(High-Dim Embeddings);
+        B -->|Reduce Dim with UMAP| C(Low-Dim Embeddings for Retrieval);
+        C -->|Index with HNSW/FAISS| D[ANN Index];
+    end
+
+    subgraph Online Query Processing
+        Q[Agent's Query / Situation] -->|Embed Query| QE(Low-Dim Query Embedding);
+        QE -->|Fast Retrieval| D;
+        D -->|Top-K Candidates| K("Candidate Set [k=50]");
+        
+        subgraph Dynamic Subspace Modeling
+            K -->|Get High-Dim Embeddings| M("Candidate Matrix ED [k x d]");
+            M -->|Perform SVD/PCA| S("Thematic Subspace [Vk, Σk]");
+        end
+
+        K -->|Project & Score| SC(Subspace Scores);
+        SC -->|Rank by Score| R(Subspace-Ranked Candidates);
+        
+        subgraph Final Precision Reranking
+             R -->|"Top-P [p=5]"| P(Top-P Candidates);
+             Q2[Agent's Query] --> XEnc;
+             P --> XEnc(Cross-Encoder);
+             XEnc -->|Final Scores| FS;
+        end
+        
+        FS -->|Argmax| F_A(Final Answer);
+    end
+```
+
 ### Offline Preparation: Building the Searchable Index
 
 1.  **High-Dimensional Embedding**: All reflection templates in the registry are encoded into high-dimensional, semantically rich vectors (e.g., d=768) using a state-of-the-art sentence transformer (e.g., SBERT).
