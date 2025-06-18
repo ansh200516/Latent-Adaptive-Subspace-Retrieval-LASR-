@@ -1,14 +1,3 @@
-""" Principal Component Analysis
-"""
-
-# Author: Alexandre Gramfort <alexandre.gramfort@inria.fr>
-#         Olivier Grisel <olivier.grisel@ensta.org>
-#         Mathieu Blondel <mathieu@mblondel.org>
-#         Denis A. Engemann <d.engemann@fz-juelich.de>
-#         Michael Eickenberg <michael.eickenberg@inria.fr>
-#
-# License: BSD 3 clause
-
 from math import log, sqrt
 
 import numpy as np
