@@ -40,9 +40,9 @@ def draw_umap(embeddings, labels, n_neighbors=15, min_dist=0.1, n_components=2, 
     plt.savefig(os.path.join(output_dir, f'umap_plot_{n_components}d.png'))
     plt.close()
 
-if __name__ == '__main__':
-    embeddings = np.load('embeddings/thought_templates_embeddings.npy')
-    labels = np.load('embeddings/thought_templates_labels.npy')
-    draw_umap(embeddings, labels, n_components=3, title='UMAP projection')
+# if __name__ == '__main__':
+#     embeddings = np.load('embeddings/thought_templates_embeddings.npy')
+#     labels = np.load('embeddings/thought_templates_labels.npy')
+#     draw_umap(embeddings, labels, n_components=3, title='UMAP projection')
     # draw_umap(embeddings, n_components=2, title='2D UMAP projection')
     # draw_umap(embeddings, n_components=1, title='1D UMAP projection')

@@ -32,19 +32,10 @@ def get_templates_from_file(filepath):
         
     return processed_templates, labels
 
-def main():
+def encode_templates(templates, labels,model):
     """
-    Main function to extract templates, encode them, and save the embeddings and labels.
+    Function to extract templates, encode them, and save the embeddings and labels.
     """
-    print("Loading sentence transformer model...")
-    model = SentenceTransformer("all-MiniLM-L6-v2")
-    print("Model loaded.")
-
-    filepath = 'data/example_temp.txt'
-    print(f"Reading templates from {filepath}...")
-    templates, labels = get_templates_from_file(filepath)
-    print(f"Found {len(templates)} templates.")
-
     if templates:
         print("Encoding templates...")
         embeddings = model.encode(templates)
@@ -66,6 +57,5 @@ def main():
         print("Labels saved successfully.")
     else:
         print("No templates found in the file.")
+    return embeddings, labels
 
-if __name__ == "__main__":
-    main() 

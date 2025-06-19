@@ -21,6 +21,8 @@ dependencies:
   - smart_open
   - requests
   - six
+  - tqdm
+  - umap-learn
   # The packages below are dependencies of the ones above.
   # Conda will pull them in automatically.
   # It's safer to let Conda choose the right versions.
