@@ -1,0 +1,21 @@
+{
+  "k": 50,
+  "hnsw": {"M": 32, "efConstruction": 80, "efSearch": 64, "metric": "inner_product"},
+  "same_dim_32": [
+    {"n": 10000, "d": 32, "exact_mean_ms": 0.0453, "hnsw_mean_ms": 0.0630, "speedup_x": 0.72, "recall@50": 0.9738},
+    {"n": 100000, "d": 32, "exact_mean_ms": 0.1851, "hnsw_mean_ms": 0.0887, "speedup_x": 2.09, "recall@50": 0.8887},
+    {"n": 500000, "d": 32, "exact_mean_ms": 1.1442, "hnsw_mean_ms": 0.2639, "speedup_x": 4.34, "recall@50": 0.7856}
+  ],
+  "pipeline_384exact_vs_32hnsw": {
+    "n": 500000,
+    "k": 50,
+    "exact_384_mean_ms": 15.9208,
+    "hnsw_32_mean_ms": 0.1924,
+    "speedup_x": 82.75,
+    "note": "Matches README: high-d embeddings for scoring, 32-d ANN for candidate generation."
+  },
+  "exact_384": [
+    {"n": 100000, "mean_ms": 3.659, "qps": 273.3},
+    {"n": 500000, "mean_ms": 18.0689, "qps": 55.3}
+  ]
+}

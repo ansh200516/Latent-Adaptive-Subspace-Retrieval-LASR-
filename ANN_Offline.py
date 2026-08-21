@@ -23,10 +23,12 @@ def save_template_map():
 
     print(f"Mapping from ID to template saved successfully in {output_path}.")
 
-def build_index(embeddings, labels):
-    M = 3 
+def build_index(embeddings, labels=None, M=32, ef_construction=80, ef_search=64):
+    embeddings = np.ascontiguousarray(embeddings, dtype="float32")
     dimension = embeddings.shape[1]
     index = faiss.IndexHNSWFlat(dimension, M, faiss.METRIC_INNER_PRODUCT)
+    index.hnsw.efConstruction = ef_construction
+    index.hnsw.efSearch = ef_search
     faiss.normalize_L2(embeddings)
     print("Faiss index created.")
     print(f"Index is trained: {index.is_trained}")
@@ -44,7 +46,7 @@ def load_index():
 
 def find_k_candidates(index, query, model,id_to_template,k=5):
     query_embedding = model.encode(query)
-    query_embedding=np.array(query_embedding).astype('float32')
+    query_embedding = np.ascontiguousarray(query_embedding, dtype="float32").reshape(1, -1)
     faiss.normalize_L2(query_embedding)
     distances,indices=index.search(query_embedding,k)
     results=[]

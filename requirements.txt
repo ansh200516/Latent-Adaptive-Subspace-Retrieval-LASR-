@@ -1,0 +1,7 @@
+numpy
+scipy
+scikit-learn
+sentence-transformers
+faiss-cpu
+umap-learn
+matplotlib

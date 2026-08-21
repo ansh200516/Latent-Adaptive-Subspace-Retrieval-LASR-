@@ -84,4 +84,23 @@ For each incoming query:
 
 ## Conclusion
 
+## Results
+
+Held-out eval: 21 MetaBuffer-Math types, 3 buffer reflections + 3 queries per type,
+50 distractors (corpus N=113). Encoder `all-MiniLM-L6-v2`. Full tables in
+`results/lasr_report.md`.
+
+| Metric | Cosine | LASR type-SVD | LASR type-centroid |
+|---|---:|---:|---:|
+| R@1 | 0.825 | 0.873 | **0.889** |
+| MRR | 0.888 | 0.896 | **0.907** |
+| nDCG@5 | 0.787 | 0.897 | **0.901** |
+
+- Intra-type p=1 energy 0.734 vs 0.552 mixed-type (lift +0.182).
+- 32-d FAISS-HNSW vs exact 384-d IP at N=500k, K=50: **15.92 ms → 0.19 ms (83×)**.
+
+```bash
+python evaluate.py
+```
+
 The LASR framework offers a principled approach to overcoming the context-agnostic limitations of simple semantic search for reflection retrieval. By integrating the speed of ANN retrieval with the deep, dynamic modeling of low-rank subspaces, it promises to deliver more accurate, robust, and contextually appropriate reflections, thereby enhancing an agent's ability to learn from its experience. Future work will involve exploring weighting schemes within the SVD computation and analyzing the emergent "meta patterns" for interpretability. 
